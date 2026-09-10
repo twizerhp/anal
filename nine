@@ -1,68 +1,368 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Nine Vicious — Anal</title>
 
     <style>
-        html, body {
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
             margin: 0;
             width: 100%;
             height: 100%;
-            background: #000;
-            color: white;
-            font-family: Arial, sans-serif;
         }
 
         body {
+            background: #070707;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow: hidden;
+        }
+
+
+        /* =========================
+           ОСНОВНОЙ ЭКРАН
+        ========================= */
+
+        .page {
+            width: 100%;
+            height: 100vh;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            background:
+                radial-gradient(
+                    circle at 20% 50%,
+                    rgba(100, 100, 100, 0.08),
+                    transparent 45%
+                );
+        }
+
+
+        /* =========================
+           ЛЕВАЯ ЧАСТЬ
+        ========================= */
+
+        .left {
+            height: 100vh;
+
             display: flex;
+
+            flex-direction: column;
+
             justify-content: center;
+
+            padding: 7vw;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .category {
+            font-size: 13px;
+
+            letter-spacing: 5px;
+
+            color: rgba(255,255,255,0.4);
+
+            text-transform: uppercase;
+
+            margin-bottom: 25px;
+        }
+
+
+        .title {
+            font-size: clamp(60px, 8vw, 120px);
+
+            line-height: 0.85;
+
+            font-weight: 900;
+
+            letter-spacing: -6px;
+
+            margin: 0;
+        }
+
+
+        .artist {
+            margin-top: 25px;
+
+            font-size: 27px;
+
+            color: rgba(255,255,255,0.65);
+
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           ПЛЕЕР
+        ========================= */
+
+        .player {
+            width: 100%;
+
+            margin-top: 55px;
+
+            padding: 25px 28px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.07);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.5);
+        }
+
+
+        .player-name {
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            color: rgba(255,255,255,0.4);
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        audio {
+            width: 100%;
+
+            height: 50px;
+        }
+
+
+        /* =========================
+           ПРАВАЯ ЧАСТЬ
+        ========================= */
+
+        .right {
+            height: 100vh;
+
+            padding: 35px;
+
+            display: flex;
+
+            justify-content: center;
+
             align-items: center;
         }
 
-        .box {
-            text-align: center;
+
+        .cover {
+            width: 100%;
+            height: 100%;
+
+            max-width: 900px;
+
+            max-height: calc(100vh - 70px);
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            background: #111;
+
+            border: 1px solid rgba(255,255,255,0.14);
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,0.8),
+                0 0 80px rgba(255,255,255,0.05);
         }
 
-        img {
-            width: 500px;
-            height: 500px;
+
+        .cover img {
+            width: 100%;
+            height: 100%;
+
             object-fit: cover;
-            border-radius: 20px;
+
+            display: block;
         }
 
-        h1 {
-            font-size: 45px;
-            margin: 25px 0 5px;
+
+        /* =========================
+           НИЖНИЙ ТЕКСТ
+        ========================= */
+
+        .footer {
+            position: fixed;
+
+            left: 7vw;
+
+            bottom: 25px;
+
+            color: rgba(255,255,255,0.25);
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            z-index: 10;
         }
 
-        p {
-            color: #aaa;
-            font-size: 20px;
+
+        /* =========================
+           МОБИЛЬНАЯ ВЕРСИЯ
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            body {
+                overflow: auto;
+            }
+
+            .page {
+                height: auto;
+
+                min-height: 100vh;
+
+                display: flex;
+
+                flex-direction: column;
+            }
+
+
+            .left {
+                height: auto;
+
+                min-height: 50vh;
+
+                padding: 50px 25px;
+
+                justify-content: center;
+            }
+
+
+            .right {
+                height: 50vh;
+
+                padding: 20px;
+            }
+
+
+            .cover {
+                max-height: none;
+
+                height: 100%;
+            }
+
+
+            .title {
+                font-size: 65px;
+
+                letter-spacing: -4px;
+            }
+
+
+            .footer {
+                display: none;
+            }
+
         }
 
-        audio {
-            width: 500px;
-            margin-top: 20px;
-        }
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="box">
 
-        <img src="cover.jpg" alt="Nine Vicious — Anal">
+    <div class="page">
 
-        <h1>ANAL</h1>
 
-        <p>Nine Vicious</p>
+        <!-- =====================
+             ЛЕВАЯ СТОРОНА
+        ====================== -->
 
-        <audio controls>
-            <source src="Anal.mp3" type="audio/mpeg">
-        </audio>
+        <section class="left">
+
+            <div class="category">
+                Single
+            </div>
+
+
+            <h1 class="title">
+                ANAL
+            </h1>
+
+
+            <div class="artist">
+                Nine Vicious
+            </div>
+
+
+            <div class="player">
+
+                <div class="player-name">
+                    Nine Vicious — Anal
+                </div>
+
+
+                <audio controls>
+
+                    <source
+                        src="Anal.mp3"
+                        type="audio/mpeg"
+                    >
+
+                    Ваш браузер не поддерживает аудио.
+
+                </audio>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================
+             ПРАВАЯ СТОРОНА
+        ====================== -->
+
+        <section class="right">
+
+            <div class="cover">
+
+                <img
+                    src="cover.jpg"
+                    alt="Nine Vicious — Anal"
+                >
+
+            </div>
+
+        </section>
+
 
     </div>
 
+
+
+    <div class="footer">
+        NINE VICIOUS • ANAL
+    </div>
+
+
 </body>
+
 </html>
